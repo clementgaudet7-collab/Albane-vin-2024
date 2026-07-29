@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Albane Vin 2024 🍇</title>
+
+<style>
+
+body {
+    margin:0;
+    background:#f6f0e6;
+    font-family:Georgia, serif;
+    color:#33241d;
+}
+
+header {
+    background:#5b1224;
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+}
+
+header h1 {
+    margin:0;
+    font-size:30px;
+}
+
+header p {
+    margin-top:8px;
+    font-style:italic;
+}
+
+
+.dashboard {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    padding:20px;
+}
+
+
+.stat {
+    background:white;
+    border-radius:16px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+}
+
+
+.stat strong {
+    display:block;
+    font-size:25px;
+    color:#7b2638;
+}
+
+
+.search {
+    width:calc(100% - 40px);
+    margin:0 20px 15px;
+    padding:14px;
+    border-radius:25px;
+    border:1px solid #cbb99c;
+    font-size:16px;
+}
+
+
+.filters {
+    display:flex;
+    gap:8px;
+    padding:0 20px 20px;
+    overflow-x:auto;
+}
+
+
+button {
+    background:#7b2638;
+    color:white;
+    border:0;
+    border-radius:20px;
+    padding:10px 16px;
+    white-space:nowrap;
+}
+
+
+.section {
+    padding:0 20px;
+}
+
+
+.section h2 {
+    border-bottom:2px solid #b28a55;
+    padding-bottom:8px;
+}
+
+
+.wine {
+
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+.blanc {
+    border-left:6px solid #d3b46b;
+}
+
+
+.rouge {
+    border-left:6px solid #7b2638;
+}
+
+
+.wine-title {
+    font-size:19px;
+    font-weight:bold;
+}
+
+
+.domain {
+    margin-top:5px;
+    color:#725b4b;
+}
+
+
+.details {
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:12px;
+    font-size:14px;
+
+}
+
+
+.tag {
+
+    display:inline-block;
+    margin-top:12px;
+    padding:5px 12px;
+    border-radius:15px;
+    font-size:12px;
+
+}
+
+
+.en-cave {
+
+    background:#dcefd8;
+    color:#27632a;
+
+}
+
+
+.a-acheter {
+
+    background:#f6e2c3;
+    color:#8a5600;
+
+}
+
+
+footer {
+
+    text-align:center;
+    padding:25px;
+    color:#777;
+    font-size:13px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🍇 Albane Vin 2024</h1>
+<p>Cave personnelle — Sélection de garde</p>
+
+</header>
+
+
+
+<div class="dashboard">
+
+
+<div class="stat">
+<strong id="bouteilles">0</strong>
+Bouteilles prévues
+</div>
+
+
+<div class="stat">
+<strong id="references">0</strong>
+Références
+</div>
+
+
+<div class="stat">
+<strong id="valeur">0 €</strong>
+Valeur connue
+</div>
+
+
+<div class="stat">
+<strong id="stock">0</strong>
+En cave
+</div>
+
+
+</div>
+
+
+
+<input 
+class="search"
+id="search"
+placeholder="🔎 Rechercher un vin ou un domaine..."
+>
+
+
+<div class="filters">
+
+<button onclick="filtrer('tout')">Tous</button>
+<button onclick="filtrer('blanc')">Blancs</button>
+<button onclick="filtrer('rouge')">Rouges</button>
+<button onclick="filtrer('en-cave')">En cave</button>
+<button onclick="filtrer('a-acheter')">À acheter</button>
+
+</div>
+
+
+
+<div id="listeVins">
+
+
+<div class="section">
+
+<h2>🟡 Vins blancs</h2>
+
+
+<div class="wine blanc en-cave">
+<div class="wine-title">Givry 1er Cru En Veau</div>
+<div class="domain">Domaine Joblot</div>
+
+<div class="details">
+<span>Région : Bourgogne</span>
+<span>Millésime : 2023</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Prix : 185 €</span>
+<span>Garde : 2028 - 2038</span>
+</div>
+
+<span class="tag en-cave">En cave</span>
+</div>
+
+
+<div class="wine blanc en-cave">
+<div class="wine-title">Chassagne-Montrachet 1er Cru Les Ruchottes</div>
+<div class="domain">Noël Ramonet</div>
+
+<div class="details">
+<span>Région : Bourgogne</span>
+<span>Quantité : 1 bouteille</span>
+<span>Prix : 125 €</span>
+<span>Garde : 2030 - 2045</span>
+</div>
+
+<span class="tag en-cave">En cave</span>
+</div>
+
+
+<div class="wine blanc a-acheter">
+<div class="wine-title">Rully 1er Cru Grésigny</div>
+<div class="domain">P & M Jacqueson</div>
+
+<div class="details">
+<span>Région : Bourgogne</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Garde : 2028 - 2038</span>
+</div>
+
+<span class="tag a-acheter">À acheter</span>
+</div>
+
+
+<div class="wine blanc a-acheter">
+<div class="wine-title">Viré-Clessé M de Quintaine</div>
+<div class="domain">Jean-Pierre Michel</div>
+
+<div class="details">
+<span>Région : Mâconnais</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Garde : 2027 - 2037</span>
+</div>
+
+<span class="tag a-acheter">À acheter</span>
+</div>
+
+
+<div class="wine blanc a-acheter">
+<div class="wine-title">Condrieu</div>
+<div class="domain">Julien Pilon / Georges Vernay</div>
+
+<div class="details">
+<span>Région : Rhône Nord</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Garde : 2027 - 2035</span>
+</div>
+
+<span class="tag a-acheter">À acheter</span>
+</div>
+
+
+<div class="wine blanc a-acheter">
+<div class="wine-title">Pinot Blanc / Riesling Sommerberg</div>
+<div class="domain">Albert Boxler</div>
+
+<div class="details">
+<span>Région : Alsace</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Garde : 2030 - 2045</span>
+</div>
+
+<span class="tag a-acheter">À acheter</span>
+</div>
+
+
+
+
+<h2>🔴 Vins rouges</h2>
+
+
+<div class="wine rouge en-cave">
+<div class="wine-title">Givry 1er Cru L'Empreinte</div>
+<div class="domain">Domaine Joblot</div>
+
+<div class="details">
+<span>Région : Bourgogne</span>
+<span>Millésime : 2023</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Prix : 205 €</span>
+<span>Garde : 2028 - 2042</span>
+</div>
+
+<span class="tag en-cave">En cave</span>
+</div>
+
+
+<div class="wine rouge a-acheter">
+<div class="wine-title">Gevrey-Chambertin 1er Cru Les Champeaux</div>
+<div class="domain">Tortochot / Trapet / Mortet</div>
+
+<div class="details">
+<span>Région : Bourgogne</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Garde : 2032 - 2050</span>
+</div>
+
+<span class="tag a-acheter">À acheter</span>
+</div>
+
+
+<div class="wine rouge a-acheter">
+<div class="wine-title">Châteauneuf-du-Pape Vieux Télégraphe</div>
+<div class="domain">Famille Brunier</div>
+
+<div class="details">
+<span>Région : Rhône Sud</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Garde : 2032 - 2055</span>
+</div>
+
+<span class="tag a-acheter">À acheter</span>
+</div>
+
+
+<div class="wine rouge en-cave">
+<div class="wine-title">Côte-Rôtie Fructus Voluptas</div>
+<div class="domain">Domaine Jamet</div>
+
+<div class="details">
+<span>Région : Rhône Nord</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Prix : 330 €</span>
+<span>Garde : 2030 - 2045</span>
+</div>
+
+<span class="tag en-cave">En cave</span>
+</div>
+
+
+<div class="wine rouge en-cave">
+<div class="wine-title">Saint-Joseph Les Pierres Sèches</div>
+<div class="domain">Yves Cuilleron</div>
+
+<div class="details">
+<span>Région : Rhône Nord</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Prix : 127 €</span>
+<span>Garde : 2028 - 2040</span>
+</div>
+
+<span class="tag en-cave">En cave</span>
+</div>
+
+
+<div class="wine rouge en-cave">
+<div class="wine-title">Saint-Émilion Grand Cru</div>
+<div class="domain">Château Beauséjour Bécot</div>
+
+<div class="details">
+<span>Région : Bordeaux</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Prix : 318 €</span>
+<span>Garde : 2030 - 2050</span>
+</div>
+
+<span class="tag en-cave">En cave</span>
+</div>
+
+
+<div class="wine rouge en-cave">
+<div class="wine-title">Saint-Émilion</div>
+<div class="domain">Château Laroque</div>
+
+<div class="details">
+<span>Région : Bordeaux</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Prix : 143 €</span>
+<span>Garde : 2028 - 2045</span>
+</div>
+
+<span class="tag en-cave">En cave</span>
+</div>
+
+
+<div class="wine rouge a-acheter">
+<div class="wine-title">Bourgueil Busardières</div>
+<div class="domain">Domaine de la Chevalerie</div>
+
+<div class="details">
+<span>Région : Loire</span>
+<span>Quantité : 6 bouteilles</span>
+<span>Garde : 2030 - 2045</span>
+</div>
+
+<span class="tag a-acheter">À acheter</span>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+Albane Vin 2024 🍇
+</footer>
+
+
+<script>
+
+window.onload = function() {
+
+const vins = document.querySelectorAll(".wine");
+
+window.filtrer = function(type){
+
+vins.forEach(function(vin){
+
+if(type === "tout" || vin.classList.contains(type)){
+vin.style.display = "block";
+}
+else{
+vin.style.display = "none";
+}
+
+});
+
+};
+
+
+let bouteilles = 0;
+let stock = 0;
+let valeur = 0;
+
+
+vins.forEach(function(vin){
+
+let texte = vin.innerText;
+
+let q = texte.match(/Quantité\s*:\s*(\d+)/i);
+
+if(q){
+bouteilles += parseInt(q[1]);
+}
+
+
+if(vin.classList.contains("en-cave") && q){
+stock += parseInt(q[1]);
+}
+
+
+let p = texte.match(/Prix\s*:\s*(\d+)/i);
+
+if(p){
+valeur += parseInt(p[1]);
+}
+
+
+});
+
+
+document.getElementById("bouteilles").innerHTML = bouteilles;
+document.getElementById("references").innerHTML = vins.length;
+document.getElementById("stock").innerHTML = stock;
+document.getElementById("valeur").innerHTML = valeur + " €";
+
+
+};
+
+</script>
