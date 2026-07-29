@@ -476,6 +476,9 @@ Albane Vin 2024 🍇
 
 <script>
 
+window.onload = function() {
+
+
 const vins = document.querySelectorAll(".wine");
 
 
@@ -487,7 +490,7 @@ document.getElementById("search").addEventListener("input", function(){
 
     vins.forEach(function(vin){
 
-        if(vin.textContent.toLowerCase().includes(recherche)){
+        if(vin.innerText.toLowerCase().includes(recherche)){
             vin.style.display = "block";
         } else {
             vin.style.display = "none";
@@ -496,6 +499,84 @@ document.getElementById("search").addEventListener("input", function(){
     });
 
 });
+
+
+
+// Filtres
+
+window.filtrer = function(type){
+
+    vins.forEach(function(vin){
+
+        if(type === "tout"){
+            vin.style.display = "block";
+        }
+
+        else if(vin.classList.contains(type)){
+            vin.style.display = "block";
+        }
+
+        else{
+            vin.style.display = "none";
+        }
+
+    });
+
+};
+
+
+
+// Calcul
+
+let bouteilles = 0;
+let stock = 0;
+let valeur = 0;
+
+
+vins.forEach(function(vin){
+
+    let texte = vin.innerText;
+
+
+    let quantite = texte.match(/Quantité\s*:\s*(\d+)/i);
+
+    if(quantite){
+        bouteilles += parseInt(quantite[1]);
+    }
+
+
+    if(vin.classList.contains("en-cave")){
+
+        if(quantite){
+            stock += parseInt(quantite[1]);
+        }
+
+    }
+
+
+    let prix = texte.match(/Prix\s*:\s*(\d+)/i);
+
+    if(prix){
+        valeur += parseInt(prix[1]);
+    }
+
+});
+
+
+
+document.getElementById("bouteilles").innerHTML = bouteilles;
+
+document.getElementById("references").innerHTML = vins.length;
+
+document.getElementById("stock").innerHTML = stock;
+
+document.getElementById("valeur").innerHTML = valeur + " €";
+
+
+};
+
+
+</script>
 
 
 
