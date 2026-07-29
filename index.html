@@ -10,16 +10,15 @@
 
 body {
     margin:0;
-    background:#f5efe5;
-    font-family: "Georgia", serif;
-    color:#34251d;
+    background:#f6f0e6;
+    font-family:Georgia, serif;
+    color:#33241d;
 }
 
-/* En-tête */
 header {
-    background:linear-gradient(135deg,#4b1020,#7b2638);
+    background:#5b1224;
     color:white;
-    padding:25px 20px;
+    padding:30px 20px;
     text-align:center;
 }
 
@@ -29,12 +28,10 @@ header h1 {
 }
 
 header p {
-    margin:8px 0 0;
+    margin-top:8px;
     font-style:italic;
 }
 
-
-/* Tableau de bord */
 
 .dashboard {
     display:grid;
@@ -43,34 +40,32 @@ header p {
     padding:20px;
 }
 
+
 .stat {
     background:white;
-    border-radius:15px;
+    border-radius:16px;
     padding:15px;
     text-align:center;
-    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
 }
+
 
 .stat strong {
     display:block;
-    font-size:24px;
+    font-size:25px;
     color:#7b2638;
 }
 
 
-/* Recherche */
-
 .search {
-    margin:0 20px 15px;
     width:calc(100% - 40px);
+    margin:0 20px 15px;
     padding:14px;
     border-radius:25px;
     border:1px solid #cbb99c;
     font-size:16px;
 }
 
-
-/* Boutons filtres */
 
 .filters {
     display:flex;
@@ -79,36 +74,46 @@ header p {
     overflow-x:auto;
 }
 
+
 button {
-    border:none;
-    padding:10px 16px;
-    border-radius:20px;
     background:#7b2638;
     color:white;
-    font-size:14px;
+    border:0;
+    border-radius:20px;
+    padding:10px 16px;
+    white-space:nowrap;
 }
 
-
-/* Sections */
 
 .section {
     padding:0 20px;
 }
 
+
 .section h2 {
-    border-bottom:2px solid #b08a55;
+    border-bottom:2px solid #b28a55;
     padding-bottom:8px;
 }
 
 
-/* Carte vin */
-
 .wine {
+
     background:white;
     border-radius:18px;
     padding:18px;
     margin-bottom:15px;
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+.blanc {
+    border-left:6px solid #d3b46b;
+}
+
+
+.rouge {
+    border-left:6px solid #7b2638;
 }
 
 
@@ -125,50 +130,50 @@ button {
 
 
 .details {
-    margin-top:12px;
+
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:8px;
+    margin-top:12px;
     font-size:14px;
+
 }
 
 
 .tag {
+
     display:inline-block;
-    padding:5px 10px;
+    margin-top:12px;
+    padding:5px 12px;
     border-radius:15px;
     font-size:12px;
-    margin-top:10px;
+
 }
 
 
-.acquis {
+.en-cave {
+
     background:#dcefd8;
     color:#27632a;
+
 }
 
 
-.achat {
+.a-acheter {
+
     background:#f6e2c3;
     color:#8a5600;
-}
 
-
-.blanc {
-    border-left:6px solid #d2b36c;
-}
-
-
-.rouge {
-    border-left:6px solid #7b2638;
 }
 
 
 footer {
+
     text-align:center;
     padding:25px;
     color:#777;
     font-size:13px;
+
 }
 
 
@@ -181,150 +186,156 @@ footer {
 
 
 <header>
+
 <h1>🍇 Albane Vin 2024</h1>
 <p>Cave personnelle — Sélection de garde</p>
+
 </header>
+
 
 
 <div class="dashboard">
 
-<div class="stat">
-<strong id="bottles">0</strong>
-Bouteilles
-</div>
 
 <div class="stat">
-<strong id="refs">0</strong>
+<strong id="bouteilles">0</strong>
+Bouteilles prévues
+</div>
+
+
+<div class="stat">
+<strong id="references">0</strong>
 Références
 </div>
 
-<div class="stat">
-<strong id="value">0 €</strong>
-Valeur achat
-</div>
 
 <div class="stat">
-<strong id="cellar">0</strong>
+<strong id="valeur">0 €</strong>
+Valeur connue
+</div>
+
+
+<div class="stat">
+<strong id="stock">0</strong>
 En cave
 </div>
 
+
 </div>
 
 
+
 <input 
-class="search" 
+class="search"
 id="search"
 placeholder="🔎 Rechercher un vin ou un domaine..."
 >
 
 
 <div class="filters">
-<button onclick="filter('all')">Tous</button>
-<button onclick="filter('blanc')">Blancs</button>
-<button onclick="filter('rouge')">Rouges</button>
-<button onclick="filter('acquis')">En cave</button>
-<button onclick="filter('achat')">À acheter</button>
+
+<button onclick="filtrer('tout')">Tous</button>
+<button onclick="filtrer('blanc')">Blancs</button>
+<button onclick="filtrer('rouge')">Rouges</button>
+<button onclick="filtrer('en-cave')">En cave</button>
+<button onclick="filtrer('a-acheter')">À acheter</button>
+
 </div>
 
 
-<div id="wineList">
+
+<div id="listeVins">
 
 
-<!-- <div class="section">
+<div class="section">
 
 <h2>🟡 Vins blancs</h2>
 
 
-<div class="wine blanc acquis">
+<div class="wine blanc en-cave">
 <div class="wine-title">Givry 1er Cru En Veau</div>
 <div class="domain">Domaine Joblot</div>
 
 <div class="details">
 <span>Région : Bourgogne</span>
 <span>Millésime : 2023</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Prix : 185 €</span>
 <span>Garde : 2028 - 2038</span>
 </div>
 
-<span class="tag acquis">En cave</span>
+<span class="tag en-cave">En cave</span>
 </div>
 
 
-
-<div class="wine blanc acquis">
+<div class="wine blanc en-cave">
 <div class="wine-title">Chassagne-Montrachet 1er Cru Les Ruchottes</div>
 <div class="domain">Noël Ramonet</div>
 
 <div class="details">
 <span>Région : Bourgogne</span>
-<span>Millésime : 2023</span>
-<span>Quantité : x1</span>
+<span>Quantité : 1 bouteille</span>
 <span>Prix : 125 €</span>
 <span>Garde : 2030 - 2045</span>
 </div>
 
-<span class="tag acquis">En cave</span>
+<span class="tag en-cave">En cave</span>
 </div>
 
 
-
-<div class="wine blanc achat">
+<div class="wine blanc a-acheter">
 <div class="wine-title">Rully 1er Cru Grésigny</div>
 <div class="domain">P & M Jacqueson</div>
 
 <div class="details">
 <span>Région : Bourgogne</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Garde : 2028 - 2038</span>
 </div>
 
-<span class="tag achat">À acheter</span>
+<span class="tag a-acheter">À acheter</span>
 </div>
 
 
-
-<div class="wine blanc achat">
+<div class="wine blanc a-acheter">
 <div class="wine-title">Viré-Clessé M de Quintaine</div>
 <div class="domain">Jean-Pierre Michel</div>
 
 <div class="details">
 <span>Région : Mâconnais</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Garde : 2027 - 2037</span>
 </div>
 
-<span class="tag achat">À acheter</span>
+<span class="tag a-acheter">À acheter</span>
 </div>
 
 
-
-<div class="wine blanc achat">
+<div class="wine blanc a-acheter">
 <div class="wine-title">Condrieu</div>
 <div class="domain">Julien Pilon / Georges Vernay</div>
 
 <div class="details">
 <span>Région : Rhône Nord</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Garde : 2027 - 2035</span>
 </div>
 
-<span class="tag achat">À acheter</span>
+<span class="tag a-acheter">À acheter</span>
 </div>
 
 
-
-<div class="wine blanc achat">
+<div class="wine blanc a-acheter">
 <div class="wine-title">Pinot Blanc / Riesling Sommerberg</div>
 <div class="domain">Albert Boxler</div>
 
 <div class="details">
 <span>Région : Alsace</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Garde : 2030 - 2045</span>
 </div>
 
-<span class="tag achat">À acheter</span>
+<span class="tag a-acheter">À acheter</span>
 </div>
 
 
@@ -333,129 +344,121 @@ placeholder="🔎 Rechercher un vin ou un domaine..."
 <h2>🔴 Vins rouges</h2>
 
 
-
-<div class="wine rouge acquis">
+<div class="wine rouge en-cave">
 <div class="wine-title">Givry 1er Cru L'Empreinte</div>
 <div class="domain">Domaine Joblot</div>
 
 <div class="details">
 <span>Région : Bourgogne</span>
 <span>Millésime : 2023</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Prix : 205 €</span>
 <span>Garde : 2028 - 2042</span>
 </div>
 
-<span class="tag acquis">En cave</span>
+<span class="tag en-cave">En cave</span>
 </div>
 
 
-
-<div class="wine rouge achat">
+<div class="wine rouge a-acheter">
 <div class="wine-title">Gevrey-Chambertin 1er Cru Les Champeaux</div>
 <div class="domain">Tortochot / Trapet / Mortet</div>
 
 <div class="details">
 <span>Région : Bourgogne</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Garde : 2032 - 2050</span>
 </div>
 
-<span class="tag achat">À acheter</span>
+<span class="tag a-acheter">À acheter</span>
 </div>
 
 
-
-<div class="wine rouge achat">
+<div class="wine rouge a-acheter">
 <div class="wine-title">Châteauneuf-du-Pape Vieux Télégraphe</div>
 <div class="domain">Famille Brunier</div>
 
 <div class="details">
 <span>Région : Rhône Sud</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Garde : 2032 - 2055</span>
 </div>
 
-<span class="tag achat">À acheter</span>
+<span class="tag a-acheter">À acheter</span>
 </div>
 
 
-
-<div class="wine rouge acquis">
+<div class="wine rouge en-cave">
 <div class="wine-title">Côte-Rôtie Fructus Voluptas</div>
 <div class="domain">Domaine Jamet</div>
 
 <div class="details">
 <span>Région : Rhône Nord</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Prix : 330 €</span>
 <span>Garde : 2030 - 2045</span>
 </div>
 
-<span class="tag acquis">En cave</span>
+<span class="tag en-cave">En cave</span>
 </div>
 
 
-
-<div class="wine rouge acquis">
+<div class="wine rouge en-cave">
 <div class="wine-title">Saint-Joseph Les Pierres Sèches</div>
 <div class="domain">Yves Cuilleron</div>
 
 <div class="details">
 <span>Région : Rhône Nord</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Prix : 127 €</span>
 <span>Garde : 2028 - 2040</span>
 </div>
 
-<span class="tag acquis">En cave</span>
+<span class="tag en-cave">En cave</span>
 </div>
 
 
-
-<div class="wine rouge acquis">
+<div class="wine rouge en-cave">
 <div class="wine-title">Saint-Émilion Grand Cru</div>
 <div class="domain">Château Beauséjour Bécot</div>
 
 <div class="details">
 <span>Région : Bordeaux</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Prix : 318 €</span>
 <span>Garde : 2030 - 2050</span>
 </div>
 
-<span class="tag acquis">En cave</span>
+<span class="tag en-cave">En cave</span>
 </div>
 
 
-
-<div class="wine rouge acquis">
+<div class="wine rouge en-cave">
 <div class="wine-title">Saint-Émilion</div>
 <div class="domain">Château Laroque</div>
 
 <div class="details">
 <span>Région : Bordeaux</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Prix : 143 €</span>
 <span>Garde : 2028 - 2045</span>
 </div>
 
-<span class="tag acquis">En cave</span>
+<span class="tag en-cave">En cave</span>
 </div>
 
 
-
-<div class="wine rouge achat">
+<div class="wine rouge a-acheter">
 <div class="wine-title">Bourgueil Busardières</div>
 <div class="domain">Domaine de la Chevalerie</div>
 
 <div class="details">
 <span>Région : Loire</span>
-<span>Quantité : x6</span>
+<span>Quantité : 6 bouteilles</span>
 <span>Garde : 2030 - 2045</span>
 </div>
 
-<span class="tag achat">À acheter</span>
+<span class="tag a-acheter">À acheter</span>
 </div>
 
 
@@ -463,6 +466,7 @@ placeholder="🔎 Rechercher un vin ou un domaine..."
 
 
 </div>
+
 
 
 <footer>
@@ -472,45 +476,48 @@ Albane Vin 2024 🍇
 
 <script>
 
-// Recherche instantanée
 
-const search = document.getElementById("search");
+<script>
 
-search.addEventListener("keyup", function(){
 
-let value = this.value.toLowerCase();
+// Recherche
 
-document.querySelectorAll(".wine").forEach(function(wine){
+document.getElementById("search").addEventListener("keyup", function(){
 
-if(wine.innerText.toLowerCase().includes(value)){
-wine.style.display="block";
+let recherche = this.value.toLowerCase();
+
+document.querySelectorAll(".wine").forEach(function(vin){
+
+if(vin.innerText.toLowerCase().includes(recherche)){
+vin.style.display="block";
 }
 else{
-wine.style.display="none";
+vin.style.display="none";
 }
 
 });
 
 });
+
 
 
 
 // Filtres
 
-function filter(type){
+function filtrer(type){
 
-document.querySelectorAll(".wine").forEach(function(wine){
+document.querySelectorAll(".wine").forEach(function(vin){
 
-if(type==="all"){
-wine.style.display="block";
+if(type === "tout"){
+vin.style.display="block";
 }
 
-else if(wine.classList.contains(type)){
-wine.style.display="block";
+else if(vin.classList.contains(type)){
+vin.style.display="block";
 }
 
 else{
-wine.style.display="none";
+vin.style.display="none";
 }
 
 });
@@ -519,54 +526,61 @@ wine.style.display="none";
 
 
 
-// Calcul automatique du tableau de bord
 
-function updateDashboard(){
+// Calcul du tableau de bord
 
-let wines=document.querySelectorAll(".wine");
+function calculer(){
 
-let references=wines.length;
+let vins = document.querySelectorAll(".wine");
 
-let bottles=0;
+let references = vins.length;
 
-let cellar=0;
+let bouteilles = 0;
 
-let value=0;
+let stock = 0;
 
-
-wines.forEach(function(wine){
+let valeur = 0;
 
 
-let text=wine.innerText;
+
+vins.forEach(function(vin){
 
 
-// quantité
-
-let qty=text.match(/x(\d+)/);
-
-if(qty){
-bottles += parseInt(qty[1]);
-}
+let texte = vin.innerText;
 
 
-// bouteilles en cave
 
-if(wine.classList.contains("acquis")){
+// Quantités
 
-if(qty){
-cellar += parseInt(qty[1]);
-}
+let quantite = texte.match(/Quantité\s*:\s*(\d+)/i);
+
+if(quantite){
+
+bouteilles += Number(quantite[1]);
 
 }
 
 
-// prix
+// Stock en cave
 
-let price=text.match(/(\d+)\s€/);
+if(vin.classList.contains("en-cave")){
 
-if(price){
+if(quantite){
 
-value += parseInt(price[1]);
+stock += Number(quantite[1]);
+
+}
+
+}
+
+
+// Prix
+
+let prix = texte.match(/Prix\s*:\s*(\d+)\s*€/i);
+
+if(prix){
+
+valeur += Number(prix[1]);
 
 }
 
@@ -575,21 +589,25 @@ value += parseInt(price[1]);
 
 
 
-document.getElementById("bottles").innerHTML=bottles;
+document.getElementById("bouteilles").innerHTML = bouteilles;
 
-document.getElementById("refs").innerHTML=references;
+document.getElementById("references").innerHTML = references;
 
-document.getElementById("cellar").innerHTML=cellar;
+document.getElementById("stock").innerHTML = stock;
 
-document.getElementById("value").innerHTML=value+" €";
+document.getElementById("valeur").innerHTML = valeur + " €";
 
 
 }
 
 
-// lancement
 
-updateDashboard();
+// Lancement automatique
+
+calculer();
+
+
+</script>
 
 
 </script>
