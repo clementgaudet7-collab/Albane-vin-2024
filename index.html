@@ -476,29 +476,26 @@ Albane Vin 2024 🍇
 
 <script>
 
-
-<script>
+const vins = document.querySelectorAll(".wine");
 
 
 // Recherche
 
-document.getElementById("search").addEventListener("keyup", function(){
+document.getElementById("search").addEventListener("input", function(){
 
-let recherche = this.value.toLowerCase();
+    let recherche = this.value.toLowerCase();
 
-document.querySelectorAll(".wine").forEach(function(vin){
+    vins.forEach(function(vin){
 
-if(vin.innerText.toLowerCase().includes(recherche)){
-vin.style.display="block";
-}
-else{
-vin.style.display="none";
-}
+        if(vin.textContent.toLowerCase().includes(recherche)){
+            vin.style.display = "block";
+        } else {
+            vin.style.display = "none";
+        }
+
+    });
 
 });
-
-});
-
 
 
 
@@ -506,83 +503,59 @@ vin.style.display="none";
 
 function filtrer(type){
 
-document.querySelectorAll(".wine").forEach(function(vin){
+    vins.forEach(function(vin){
 
-if(type === "tout"){
-vin.style.display="block";
+        if(type === "tout"){
+            vin.style.display = "block";
+        }
+
+        else if(vin.classList.contains(type)){
+            vin.style.display = "block";
+        }
+
+        else{
+            vin.style.display = "none";
+        }
+
+    });
+
 }
 
-else if(vin.classList.contains(type)){
-vin.style.display="block";
-}
-
-else{
-vin.style.display="none";
-}
-
-});
-
-}
 
 
-
-
-// Calcul du tableau de bord
-
-function calculer(){
-
-let vins = document.querySelectorAll(".wine");
-
-let references = vins.length;
+// Calcul
 
 let bouteilles = 0;
-
 let stock = 0;
-
 let valeur = 0;
-
 
 
 vins.forEach(function(vin){
 
-
-let texte = vin.innerText;
-
+    let texte = vin.textContent;
 
 
-// Quantités
+    let q = texte.match(/Quantité\s*:\s*(\d+)/);
 
-let quantite = texte.match(/Quantité\s*:\s*(\d+)/i);
-
-if(quantite){
-
-bouteilles += Number(quantite[1]);
-
-}
+    if(q){
+        bouteilles += parseInt(q[1]);
+    }
 
 
-// Stock en cave
+    if(vin.classList.contains("en-cave")){
 
-if(vin.classList.contains("en-cave")){
+        if(q){
+            stock += parseInt(q[1]);
+        }
 
-if(quantite){
-
-stock += Number(quantite[1]);
-
-}
-
-}
+    }
 
 
-// Prix
+    let p = texte.match(/Prix\s*:\s*(\d+)/);
 
-let prix = texte.match(/Prix\s*:\s*(\d+)\s*€/i);
-
-if(prix){
-
-valeur += Number(prix[1]);
-
-}
+    if(p){
+        valeur += parseInt(p[1]);
+    }
 
 
 });
@@ -591,27 +564,11 @@ valeur += Number(prix[1]);
 
 document.getElementById("bouteilles").innerHTML = bouteilles;
 
-document.getElementById("references").innerHTML = references;
+document.getElementById("references").innerHTML = vins.length;
 
 document.getElementById("stock").innerHTML = stock;
 
 document.getElementById("valeur").innerHTML = valeur + " €";
 
 
-}
-
-
-
-// Lancement automatique
-
-calculer();
-
-
 </script>
-
-
-</script>
-
-
-</body>
-</html>
